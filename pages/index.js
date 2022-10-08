@@ -2,7 +2,7 @@ import { ethers } from "ethers"
 import Head from "next/head"
 import Image from "next/image"
 import Link from "next/Link"
-import { useState, useEffect, Fragment } from "react"
+import { useState, useEffect, Fragment, useRef } from "react"
 import { Lens } from "../helpers/lens"
 import { LENS_API_URL, LENS_HUB_ADDR } from "../config/mumbai"
 import { Dialog, Transition } from "@headlessui/react"
@@ -13,6 +13,62 @@ export default function Home() {
 
     const [posts, setPosts] = useState([])
     const [publishIsOpen, setPublishIsOpen] = useState(false)
+
+    const videoRef = useRef(null)
+    const photoRef = useRef(null)
+
+    const [hasPhoto, setHasPhoto] = useState(false)
+    const getVideo = () => {
+        navigator.mediaDevices
+            .getUserMedia({ video: { width: 1920, height: 1080 } })
+            .then((stream) => {
+                let video = videoRef.current
+                video.srcObject = stream
+                video.play()
+            })
+            .catch((err) => console.error(err))
+    }
+
+    const successCallback = (position) => {
+        console.log(position)
+    }
+
+    const errorCallback = (error) => {
+        console.log(error)
+    }
+
+    const takePhoto = () => {
+        const width = 414
+        const height = width / (16 / 9)
+
+        let video = videoRef.current
+        let photo = photoRef.current
+
+        photo.width = width
+        photo.height = height
+        let ctx = photo.getContext("2d")
+        ctx.drawImage(video, 0, 0, width, height)
+        setHasPhoto(true)
+
+        var dataURL = photo
+            .toDataURL("image/jpg")
+            .replace("image/jpg", "image/camera-react")
+
+        return dataURL
+    }
+
+    const closePhoto = () => {
+        let photo = photoRef.current
+        let ctx = photo.getContext("2d")
+
+        ctx.clearRect(0, 0, photo.width, photo.height)
+
+        setHasPhoto(false)
+    }
+
+    useEffect(() => {
+        getVideo()
+    }, [videoRef])
 
     useEffect(() => {
         fetchPosts()
@@ -212,6 +268,15 @@ export default function Home() {
                     </Link>
                 ))}
             </main>
+
+            <div className="camera">
+                <video ref={videoRef}></video>
+                <button onClick={takePhoto}>SNAP!</button>
+            </div>
+            <div className={"map" + (hasPhoto ? "hasPhoto" : "")}>
+                <canvas ref={photoRef}></canvas>
+                <button onClick={closePhoto}>CLOSE!</button>
+            </div>
 
             <footer>Powered by Truth</footer>
         </div>
