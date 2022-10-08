@@ -49,6 +49,10 @@ export default function Home() {
         let ctx = photo.getContext("2d")
         ctx.drawImage(video, 0, 0, width, height)
         setHasPhoto(true)
+        var location = navigator.geolocation.getCurrentPosition(
+            successCallback,
+            errorCallback
+        )
 
         var dataURL = photo
             .toDataURL("image/jpg")
