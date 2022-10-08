@@ -210,6 +210,10 @@ export default function Home() {
                 <title>Truth</title>
                 <meta name="description" content="Truth App" />
                 <link rel="icon" href="/favicon.ico" />
+                <link
+                    href="https://fonts.googleapis.com/css?family=Poppins"
+                    rel="stylesheet"
+                />
             </Head>
 
             <main>
