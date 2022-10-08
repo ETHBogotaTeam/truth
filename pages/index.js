@@ -6,6 +6,7 @@ import { useState, useEffect, Fragment } from "react"
 import { Lens } from "../helpers/lens"
 import { LENS_API_URL, LENS_HUB_ADDR } from "../config/mumbai"
 import { Dialog, Transition } from "@headlessui/react"
+import Logo from "../components/Logo"
 
 export default function Home() {
     const LENS_HUB_ABI = require("../abi/lenshub.json")
@@ -71,22 +72,21 @@ export default function Home() {
             // }
 
             const postData = {
-                profileId: 2,
+                profileId: 13329,
                 contentURI:
-                    "https://lens.infura-ipfs.io/ipfs/QmY9dUwYu67puaWBMxRKW98LPbXCznPwHUbhX5NeWnCJbX",
-                collectModule: "0x23b9467334bEb345aAa6fd1545538F3d54436e96",
-                collectModuleInitData: ethers.utils.defaultAbiCoder.encode(
-                    ["bool"],
-                    [true]
-                ),
+                    "https://lens.infura-ipfs.io/ipfs/https://ipfs.io/ipfs/Qmby8QocUU2sPZL46rZeMctAuF5nrCc7eR1PPkooCztWPz",
+                collectModule: "0x0BE6bD7092ee83D44a6eC1D949626FeE48caB30c",
+                collectModuleInitData:
+                    "0x0000000000000000000000000000000000000000000000000000000000000001",
                 referenceModule: "0x0000000000000000000000000000000000000000",
-                referenceModuleInitData: []
+                referenceModuleInitData: "0x00"
             }
 
             console.log("POSTING", postData)
 
             // const tx = await contract.setProfileImageURI(1, "https://abc123")
-            const tx = await contract.post(postData)
+            //, { gasLimit: 500000 }
+            const tx = await contract.post(postData, { gasLimit: 500000 })
             //  const tx = await contract.getHandle(1)
             // const tx = await contract.follow([1], [0x0])
             await tx.wait()
@@ -96,7 +96,7 @@ export default function Home() {
     }
 
     return (
-        <div>
+        <div className="p-2">
             <Transition appear show={publishIsOpen} as={Fragment}>
                 <Dialog as="div" onClose={() => setPublishIsOpen(false)}>
                     <Transition.Child
@@ -157,6 +157,10 @@ export default function Home() {
             </Head>
 
             <main>
+                <div className="flex">
+                    Truth. <Logo />
+                </div>
+                <h2 className="flex justify-center">Explore</h2>
                 <button
                     type="button"
                     className="border-2 p-4"
