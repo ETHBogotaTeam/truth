@@ -1,11 +1,11 @@
 import { ethers } from "ethers"
 import Head from "next/head"
 import Image from "next/image"
-// import Link from "next/Link"
-import { useState, useEffect, Fragment, useRef } from "react"
+import Link from "next/Link"
+import { useState, useEffect, useRef } from "react"
 import { Lens } from "../helpers/lens"
+import Publish from "../components/Publish"
 import { LENS_API_URL, LENS_HUB_ADDR } from "../config/mumbai"
-import { Dialog, Transition } from "@headlessui/react"
 import Logo from "../components/Logo"
 
 export default function Home() {
@@ -68,6 +68,14 @@ export default function Home() {
         ctx.clearRect(0, 0, photo.width, photo.height)
 
         setHasPhoto(false)
+    }
+
+    const closePublishModal = () => {
+        setPublishIsOpen(false)
+    }
+
+    const handlePhotoChange = () => {
+        // do something
     }
 
     useEffect(() => {
@@ -157,58 +165,12 @@ export default function Home() {
 
     return (
         <div className="p-2">
-            <Transition appear show={publishIsOpen} as={Fragment}>
-                <Dialog as="div" onClose={() => setPublishIsOpen(false)}>
-                    <Transition.Child
-                        as={Fragment}
-                        enter="ease-out duration-300"
-                        enterFrom="opacity-0 scale-95"
-                        enterTo="opacity-100 scale-100"
-                        leave="ease-in duration-200"
-                        leaveFrom="opacity-100 scale-100"
-                        leaveTo="opacity-0 scale-95"
-                    >
-                        <div className="fixed inset-0 flex items-center justify-center p-4" />
-                    </Transition.Child>
-
-                    <div className="fixed inset-0 overflow-y-auto">
-                        <div>
-                            <Transition.Child
-                                as={Fragment}
-                                enter="ease-out duration-300"
-                                enterFrom="opacity-0 scale-95"
-                                enterTo="opacity-100 scale-100"
-                                leave="ease-in duration-200"
-                                leaveFrom="opacity-100 scale-100"
-                                leaveTo="opacity-0 scale-95"
-                            >
-                                <Dialog.Panel className="w-10/12 max-w-md transform overflow-hidden rounded-lg border-blue-500 border-2 bg-white shadow-xl transition-all">
-                                    <Dialog.Title as="div">
-                                        Publish Photo
-                                        <button
-                                            type="button"
-                                            className="flex border-2 p-4"
-                                            onClick={() =>
-                                                setPublishIsOpen(false)
-                                            }
-                                        >
-                                            Cancel
-                                        </button>
-                                    </Dialog.Title>
-                                    <p>Publish a photo</p>
-                                    <textarea cols="40" className="border-2" />
-                                    <button
-                                        onClick={publishPost}
-                                        className="flex border-2 p-4"
-                                    >
-                                        Submit
-                                    </button>
-                                </Dialog.Panel>
-                            </Transition.Child>
-                        </div>
-                    </div>
-                </Dialog>
-            </Transition>
+            <Publish
+                publishIsOpen={publishIsOpen}
+                closePublishModal={closePublishModal}
+                handlePhotoChange={handlePhotoChange}
+                handleSubmitPublish={publishPost}
+            />
 
             <Head>
                 <title>Truth</title>
@@ -241,39 +203,39 @@ export default function Home() {
                 </button>
                 <h1>Truth</h1>
                 {posts.map((post, index) => (
-                    // <Link
-                    //     href={`/profile/${
-                    //         post.profile.id || post.profile.profileId
-                    //     }`}
-                    //     key={index}
-                    // >
-                    //     <a>
-                    //         <div>
-                    //             {/* <p>{typeMap[post.__typename]}</p> */}
-                    //             <div>
-                    //                 {post.profile.picture &&
-                    //                 post.profile.picture.original ? (
-                    //                     <img
-                    //                         src={
-                    //                             post.profile.picture.original
-                    //                                 .url
-                    //                         }
-                    //                     />
-                    //                 ) : (
-                    //                     <div />
-                    //                 )}
+                    <Link
+                        href={`/profile/${
+                            post.profile.id || post.profile.profileId
+                        }`}
+                        key={index}
+                    >
+                        <a>
+                            <div>
+                                {/* <p>{typeMap[post.__typename]}</p> */}
+                                <div>
+                                    {post.profile.picture &&
+                                    post.profile.picture.original ? (
+                                        <img
+                                            src={
+                                                post.profile.picture.original
+                                                    .url
+                                            }
+                                        />
+                                    ) : (
+                                        <div />
+                                    )}
 
-                    //                 <div>
-                    //                     <h3>{post.profile.name}</h3>
-                    //                     <p>{post.profile.handle}</p>
-                    //                 </div>
-                    //             </div>
-                    //             <div>
-                    //                 <p>{post.metadata.content}</p>
-                    //             </div>
-                    //         </div>
-                    //     </a>
-                    // </Link>
+                                    <div>
+                                        <h3>{post.profile.name}</h3>
+                                        <p>{post.profile.handle}</p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p>{post.metadata.content}</p>
+                                </div>
+                            </div>
+                        </a>
+                    </Link>
                 ))}
             </main>
 

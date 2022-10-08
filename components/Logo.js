@@ -61,8 +61,8 @@ const Logo = () => {
                     gradientUnits="userSpaceOnUse"
                     gradientTransform="translate(15.1542 11) rotate(90) scale(11 12.1542)"
                 >
-                    <stop stop-color="#004A7C" />
-                    <stop offset="1" stop-color="white" />
+                    <stop stopColor="#004A7C" />
+                    <stop offset="1" stopColor="white" />
                 </radialGradient>
             </defs>
         </svg>
