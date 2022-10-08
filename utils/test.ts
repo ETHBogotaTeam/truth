@@ -31,7 +31,7 @@ async function main() {
   console.log(verified);
 
   console.log(process.env);
-  const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweGIzZjNjMWM0ZjMxOTNmODI4ODlEZTZBMmVjRjAxMmQwQ0VjRjQ4NUYiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2NTc5OTYxODUzNDUsIm5hbWUiOiJGUy1IQUNLIn0.zi3M741ubRNKN5n5YumSenNZmqR8ToHtQi4idlmKOHY";
+  const token = 0;
 
 
   // Function will take image, Node.js doesn't have FILE, need to use Fs
