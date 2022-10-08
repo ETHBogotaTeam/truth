@@ -1,7 +1,7 @@
 import { ethers } from "ethers"
 import Head from "next/head"
 import Image from "next/image"
-import NextLink from "next/Link"
+// import Link from "next/Link"
 import { useState, useEffect, Fragment, useRef } from "react"
 import { Lens } from "../helpers/lens"
 import { LENS_API_URL, LENS_HUB_ADDR } from "../config/mumbai"
@@ -241,39 +241,39 @@ export default function Home() {
                 </button>
                 <h1>Truth</h1>
                 {posts.map((post, index) => (
-                    <NextLink
-                        href={`/profile/${
-                            post.profile.id || post.profile.profileId
-                        }`}
-                        key={index}
-                    >
-                        <a>
-                            <div>
-                                {/* <p>{typeMap[post.__typename]}</p> */}
-                                <div>
-                                    {post.profile.picture &&
-                                    post.profile.picture.original ? (
-                                        <img
-                                            src={
-                                                post.profile.picture.original
-                                                    .url
-                                            }
-                                        />
-                                    ) : (
-                                        <div />
-                                    )}
+                    // <Link
+                    //     href={`/profile/${
+                    //         post.profile.id || post.profile.profileId
+                    //     }`}
+                    //     key={index}
+                    // >
+                    //     <a>
+                    //         <div>
+                    //             {/* <p>{typeMap[post.__typename]}</p> */}
+                    //             <div>
+                    //                 {post.profile.picture &&
+                    //                 post.profile.picture.original ? (
+                    //                     <img
+                    //                         src={
+                    //                             post.profile.picture.original
+                    //                                 .url
+                    //                         }
+                    //                     />
+                    //                 ) : (
+                    //                     <div />
+                    //                 )}
 
-                                    <div>
-                                        <h3>{post.profile.name}</h3>
-                                        <p>{post.profile.handle}</p>
-                                    </div>
-                                </div>
-                                <div>
-                                    <p>{post.metadata.content}</p>
-                                </div>
-                            </div>
-                        </a>
-                    </NextLink>
+                    //                 <div>
+                    //                     <h3>{post.profile.name}</h3>
+                    //                     <p>{post.profile.handle}</p>
+                    //                 </div>
+                    //             </div>
+                    //             <div>
+                    //                 <p>{post.metadata.content}</p>
+                    //             </div>
+                    //         </div>
+                    //     </a>
+                    // </Link>
                 ))}
             </main>
 
