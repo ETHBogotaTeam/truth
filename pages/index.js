@@ -46,8 +46,53 @@ export default function Home() {
         )
 
         try {
-            const tx = contract.post()
-        } catch (err) {}
+            // 13329,
+            // "https://lens.infura-ipfs.io/ipfs/QmY9dUwYu67puaWBMxRKW98LPbXCznPwHUbhX5NeWnCJbX",
+            // "0x23b9467334bEb345aAa6fd1545538F3d54436e96",
+            // "0x0000000000000000000000000000000000000000000000000000000000000001",
+            // "0x0000000000000000000000000000000000000000",
+            // "0x00"
+
+            // const postData = {
+            //     profileId: 1,
+            //     contentURI:
+            //         "https://lens.infura-ipfs.io/ipfs/QmY9dUwYu67puaWBMxRKW98LPbXCznPwHUbhX5NeWnCJbX",
+            //     collectModule: "0x23b9467334bEb345aAa6fd1545538F3d54436e96",
+            //     collectModuleInitData: ethers.utils.defaultAbiCoder.encode(
+            //         ["bool"],
+            //         [true]
+            //     ),
+            //     referenceModule: "0x0000000000000000000000000000000000000000",
+            //     referenceModuleInitData: []
+            // }
+            // const postData = {
+            //     profileId: 1,
+            //     imageURI: "https://abc123"
+            // }
+
+            const postData = {
+                profileId: 2,
+                contentURI:
+                    "https://lens.infura-ipfs.io/ipfs/QmY9dUwYu67puaWBMxRKW98LPbXCznPwHUbhX5NeWnCJbX",
+                collectModule: "0x23b9467334bEb345aAa6fd1545538F3d54436e96",
+                collectModuleInitData: ethers.utils.defaultAbiCoder.encode(
+                    ["bool"],
+                    [true]
+                ),
+                referenceModule: "0x0000000000000000000000000000000000000000",
+                referenceModuleInitData: []
+            }
+
+            console.log("POSTING", postData)
+
+            // const tx = await contract.setProfileImageURI(1, "https://abc123")
+            const tx = await contract.post(postData)
+            //  const tx = await contract.getHandle(1)
+            // const tx = await contract.follow([1], [0x0])
+            await tx.wait()
+        } catch (err) {
+            console.log("Error publishing post:", err)
+        }
     }
 
     return (
