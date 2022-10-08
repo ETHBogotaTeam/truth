@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
+
   },
   "dependencies": {
     "@headlessui/react": "^1.7.3",
@@ -16,7 +17,10 @@
     "next": "12.3.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "urql": "^3.0.3"
+    "urql": "^3.0.3",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0",
+    "eslint": "^8.1.0"
   },
   "devDependencies": {
     "@types/node": "18.8.3",
