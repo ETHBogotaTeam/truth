@@ -12,7 +12,7 @@ class Lens {
             query Publications {
                 publications(request: {
                   profileId: "0x01",
-                  publicationTypes: [POST, COMMENT, MIRROR],
+                  publicationTypes: [POST],
                   limit: 10
                 }) {
                   items {
@@ -362,9 +362,7 @@ class Lens {
               `
         const response = await this.client.query(query).toPromise()
 
-        const { data } = response
-
-        return data
+        return response.data.publications.items
     }
 }
 
