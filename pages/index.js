@@ -1,7 +1,7 @@
 import { ethers } from "ethers"
 import Head from "next/head"
 import Image from "next/image"
-import Link from "next/Link"
+import NextLink from "next/Link"
 import { useState, useEffect, Fragment, useRef } from "react"
 import { Lens } from "../helpers/lens"
 import { LENS_API_URL, LENS_HUB_ADDR } from "../config/mumbai"
@@ -241,7 +241,7 @@ export default function Home() {
                 </button>
                 <h1>Truth</h1>
                 {posts.map((post, index) => (
-                    <Link
+                    <NextLink
                         href={`/profile/${
                             post.profile.id || post.profile.profileId
                         }`}
@@ -273,7 +273,7 @@ export default function Home() {
                                 </div>
                             </div>
                         </a>
-                    </Link>
+                    </NextLink>
                 ))}
             </main>
 
