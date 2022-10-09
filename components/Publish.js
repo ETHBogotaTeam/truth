@@ -60,16 +60,16 @@ const Publish = ({
     const onPhotoChange = (event) => {
         const web3StorageApiToken =
             "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweGRjMmZGNUI1OTk4MTkwMDc4NTVkMWRGRkQ4MDI5YTExMDk5Q2JBOTUiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2NjI0NTYyNTkwNjgsIm5hbWUiOiJUQVoifQ.QAR-mcLPEPtmDU4Mod8olwCV_2_T4O5PQU-r-KkRe0A" // process.env.WEB3_STORAGE_API_TOKEN
-        const files = event.target.files
+        const file = event.target.files[0]
         const web3StorageClient = new Web3Storage({
             token: web3StorageApiToken,
             endpoint: new URL("https://api.web3.storage")
         })
         web3StorageClient
-            .put(files, { wrapWithDirectory: false })
+            .put([file], { wrapWithDirectory: false })
             .then((dataCid) => {
                 const imagelUri = "https://" + dataCid + ".ipfs.dweb.link"
-                alert("Uri for serving image: ", imagelUri)
+                alert("Uri for serving image: " + imagelUri)
             })
     }
 
