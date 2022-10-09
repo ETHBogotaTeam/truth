@@ -61,15 +61,6 @@ export default function Home() {
         return dataURL
     }
 
-    const closePhoto = () => {
-        let photo = photoRef.current
-        let ctx = photo.getContext("2d")
-
-        ctx.clearRect(0, 0, photo.width, photo.height)
-
-        setHasPhoto(false)
-    }
-
     const closePublishModal = () => {
         setPublishIsOpen(false)
     }
@@ -241,15 +232,6 @@ export default function Home() {
                     </Link>
                 ))}
             </main>
-
-            <div className="camera">
-                <video ref={videoRef}></video>
-                <button onClick={takePhoto}>SNAP!</button>
-            </div>
-            <div className={"map" + (hasPhoto ? "hasPhoto" : "")}>
-                <canvas ref={photoRef}></canvas>
-                <button onClick={closePhoto}>CLOSE!</button>
-            </div>
 
             <footer>Powered by Truth</footer>
         </div>

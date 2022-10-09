@@ -1,5 +1,5 @@
 import { Dialog, Transition } from "@headlessui/react"
-import { useState, Fragment } from "react"
+import { useState, Fragment, useEffect, useRef } from "react"
 
 const Publish = ({
     publishIsOpen,
@@ -7,6 +7,56 @@ const Publish = ({
     handlePhotoChange,
     publishPost
 }) => {
+    const videoRef = useRef(null)
+    const photoRef = useRef(null)
+
+    const [hasPhoto, setHasPhoto] = useState(false)
+    const getVideo = () => {
+        navigator.mediaDevices
+            .getUserMedia({ video: { width: 1920, height: 1080 } })
+            .then((stream) => {
+                let video = videoRef.current
+                video.srcObject = stream
+                video.play()
+            })
+            .catch((err) => console.error(err))
+    }
+
+    const successCallback = (position) => {
+        console.log(position)
+    }
+
+    const errorCallback = (error) => {
+        console.log(error)
+    }
+    const takePhoto = () => {
+        const width = 414
+        const height = width / (16 / 9)
+
+        let video = videoRef.current
+        let photo = photoRef.current
+
+        photo.width = width
+        photo.height = height
+        let ctx = photo.getContext("2d")
+        ctx.drawImage(video, 0, 0, width, height)
+        setHasPhoto(true)
+        var location = navigator.geolocation.getCurrentPosition(
+            successCallback,
+            errorCallback
+        )
+
+        var dataURL = photo
+            .toDataURL("image/jpg")
+            .replace("image/jpg", "image/camera-react")
+
+        return dataURL
+    }
+
+    useEffect(() => {
+        getVideo()
+    }, [videoRef])
+
     return (
         <div>
             <Transition appear show={publishIsOpen} as={Fragment}>
@@ -48,10 +98,19 @@ const Publish = ({
                                         </button>
                                     </Dialog.Title>
                                     <p>Publish a photo</p>
-                                    <input
-                                        type="file"
-                                        onChange="handlePhotoChange"
-                                    />
+                                    <div className="camera">
+                                        <video ref={videoRef}></video>
+                                        <button onClick={takePhoto}>
+                                            SNAP!
+                                        </button>
+                                    </div>
+                                    <div
+                                        className={
+                                            "map" + (hasPhoto ? "hasPhoto" : "")
+                                        }
+                                    >
+                                        <canvas ref={photoRef}></canvas>
+                                    </div>
                                     <button
                                         onClick={publishPost}
                                         className="flex border-2 p-4"
