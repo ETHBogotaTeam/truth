@@ -1,4 +1,29 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+## Hardhat
+
+node_modules
+.env
+coverage
+coverage.json
+typechain
+typechain-types
+
+#Hardhat files
+cache
+artifacts
+
+
+node_modules
+.env
+coverage
+coverage.json
+typechain
+typechain-types
+
+#Hardhat files
+cache
+artifacts
+
+## Next
 
 # dependencies
 /node_modules
@@ -39,4 +64,3 @@ next-env.d.ts
 .vscode
 
 
-.env
