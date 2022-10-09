@@ -1,3 +1,4 @@
+
 const nextConfig = {
     reactStrictMode: true,
     webpack: function (config, options) {
