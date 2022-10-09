@@ -17,17 +17,17 @@ const config: HardhatUserConfig = {
       //   {privateKey: "0b0f343df9ee2c17c308e904bf9363d35af0e03ed4495a1970a7b96db7468734" , balance:"10000000000000000000000"}
       // ],
       forking:{
-        url: "https://eth-goerli.g.alchemy.com/v2/HTnCRg0KxPt5aG7FCaMePEWGK1nRegjD",
+        url: "",
         // blockNumber : 7600000
       }
     },
     mumbai: {
-      url: 'https://polygon-mumbai.g.alchemy.com/v2/YdsNfZkPMSAefI7wwCnBFfXK0ZRz2F-k',
+      url: '',
       chainId: 137,
     },
     goerli: {
-      url: "https://eth-goerli.g.alchemy.com/v2/HTnCRg0KxPt5aG7FCaMePEWGK1nRegjD",
-      accounts:["0b0f343df9ee2c17c308e904bf9363d35af0e03ed4495a1970a7b96db7468734"]
+      url: "",
+      accounts:[""]
     }
 
   },
