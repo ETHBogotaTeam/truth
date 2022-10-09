@@ -212,7 +212,10 @@ export default function Map2({ photoUri }) {
             {isLoaded ? (
                 <div className="w-[400px]">
                     {mainProof ? (
-                        <div>{finalUri}</div>
+                        <div className="flex items-center justify-center mt-5 text-[17px] font-bold">
+                            Proofs Generated! Send your transaction!
+                        </div>
+               
                     ) : (
                         <GoogleMap
                             onLoad={onLoad}
