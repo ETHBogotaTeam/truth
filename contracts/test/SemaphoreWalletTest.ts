@@ -6,7 +6,7 @@ import { ERC4337EthersProvider } from '@account-abstraction/sdk'
 import { MyWalletApi } from '../src'
 import { SimpleWalletAPI } from '@account-abstraction/sdk'
 import { ZKWalletApi } from '../src/ZKWalletApi'
-import GreeterArtifact from './utils/Greeter.json';
+// import GreeterArtifact from './utils/Greeter.json';
 
 const hre = require("hardhat");
 
