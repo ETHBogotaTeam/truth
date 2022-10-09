@@ -17,7 +17,8 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "module": "esnext"
   },
   // "ts-node": {
   //   // these options are overrides used only by ts-node
@@ -29,8 +30,10 @@
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx"
-, "pages/noir.tsx", "pages/api/sexytime.js"  ],
+    "**/*.tsx",
+    "pages/noir.tsx",
+    "pages/api/sexytime.js"
+  ],
   "exclude": [
     "node_modules"
   ]
