@@ -7,8 +7,8 @@ module.exports = {
     theme: {
         extend: {
             fontFamily: {
-                sans: ["JetBrains Mono"],
-                year: ["Poppins"]
+                display: ["Poppins"],
+                body: ['"Open Sans"']
             }
         }
     },

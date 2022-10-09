@@ -182,11 +182,14 @@ export default function Home() {
                 />
             </Head>
 
-            <main>
+            <main className="bg-[url('/bg.jpg')] p-0 m-0">
                 <div className="flex">
-                    Truth. <Logo />
+                    <span className="text-gray-500 font-medium">Truth.</span>{" "}
+                    <Logo />
                 </div>
-                <h2 className="flex justify-center">Explore</h2>
+                <h2 className="flex justify-center font-bold text-lg">
+                    Explore
+                </h2>
                 <button
                     type="button"
                     className="border-2 p-4"
