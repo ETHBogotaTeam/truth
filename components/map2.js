@@ -108,10 +108,10 @@ export default function Map2() {
   async function generateProof() {
 
       // Load files and run proof locally
-      let DOMAIN = "http://localhost:3000";
-      let VERCEL_DOMAIN ="https://daordinate-three.vercel.app/";
-      let wasmBuff = await getFileBuffer(`${DOMAIN}/inRange.wasm`);
-      let zkeyBuff = await getFileBuffer(`${DOMAIN}/inRange.zkey`);
+    //   let DOMAIN = "http://localhost:3000";
+    //   let VERCEL_DOMAIN ="https://daordinate-three.vercel.app/";
+      let wasmBuff = await getFileBuffer(`/inRange.wasm`);
+      let zkeyBuff = await getFileBuffer(`/inRange.zkey`);
     
       let input = {
           "latitudeRange": [ parseInt(minLat) + 1000, parseInt(maxLat) + 1000],

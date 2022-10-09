@@ -1,7 +1,7 @@
 import { Dialog } from "@headlessui/react"
 import { useState, Fragment, useEffect, useRef } from "react"
-import Map from "./Map.js"
-import Map2 from "./Map2.js"
+// import Map from "./Map.js"
+import Map2 from "./map2.js"
 
 const { Web3Storage, File } = require("web3.storage")
 const { Blob } = require("@web-std/blob")
