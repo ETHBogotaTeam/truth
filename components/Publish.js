@@ -122,7 +122,7 @@ const Publish = ({
                                     <input
                                         type="file"
                                         accept="image/*"
-                                        capture="camera"
+                                        capture="capture"
                                     ></input>
                                 </Dialog.Panel>
                             </Transition.Child>
