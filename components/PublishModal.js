@@ -71,7 +71,7 @@ const PublishModal = ({
                                                 </div>
                                             )}
                                             <div className="flex justify-end">
-                                                <button
+                                            {photoUri ?   <button
                                                     type="button"
                                                     className="flex border-2 px-6 py-2 rounded-lg bg-[#324E7B] text-white"
                                                     onClick={() => {
@@ -79,7 +79,7 @@ const PublishModal = ({
                                                     }}
                                                 >
                                                     Next
-                                                </button>
+                                                </button> : null}
                                             </div>
                                         </div>
                                     </div>
