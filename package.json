@@ -16,8 +16,11 @@
   "dependencies": {
     "@chakra-ui/react": "^2.3.5",
     "@headlessui/react": "^1.7.3",
-    "axios": "^1.1.2",
-    "cross-fetch": "^3.1.5",
+    "@semaphore-protocol/group": "^2.5.0",
+    "@semaphore-protocol/identity": "^2.5.0",
+    "@semaphore-protocol/proof": "^2.5.0",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0",
     "dotenv": "^16.0.3",
     "esm": "^3.2.25",
     "ethers": "^5.7.1",
@@ -30,6 +33,8 @@
     "react-dom": "18.2.0",
     "react-leaflet": "^4.1.0",
     "urql": "^3.0.3"
+    "web3.storage": "^4.4.0"
+
   },
   "devDependencies": {
     "@noir-lang/aztec_backend": "^0.10.0",
@@ -38,7 +43,7 @@
     "@types/node": "18.8.3",
     "@types/react": "18.0.21",
     "autoprefixer": "^10.4.12",
-    "eslint": "8.25.0",
+    "eslint": "^8.25.0",
     "eslint-config-next": "12.3.1",
     "eslint-config-prettier": "^8.5.0",
     "hardhat": "^2.11.2",
