@@ -1,6 +1,0 @@
-type MediaPost @entity {
-  id: ID!
-  owner: Bytes! # address
-  dataUri: String! # string
-  timestamp: BigInt!
-}

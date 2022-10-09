@@ -113,9 +113,12 @@ export default function Home() {
                         {posts.map((post) => {
                             const obj = JSON.parse(post.dataUri)
                             return (
-                                <div className="flex flex-col font-bold text-lg w-[400px] h-[480px] bg-gray-300 rounded-xl px-2">
-                                    <div className="bg-gray-700 h-[70%] w-full relative">
-                                        <img src={obj.photoUri} />
+                                <div className="flex flex-col font-bold text-lg w-[400px] h-[480px] bg-gray-300 rounded-xl px-2 mb-6">
+                                    <div className="bg-gray-700 h-[70%] w-full relative flex justify-center">
+                                        <img
+                                            src={obj.photoUri}
+                                            className="max-h-[300px]"
+                                        />
                                         <div className="bg-white opacity-50 absolute bottom-0 w-full h-auto flex flex-col items-center justify-center py-2">
                                             <div className="bg-gray-800 rounded-xl text-white px-2">
                                                 Verified by Truth
@@ -124,25 +127,53 @@ export default function Home() {
                                                 <div>
                                                     Location
                                                     <p className="text-xs">
-                                                        Min Lat {obj.lat1}
+                                                        Min Lat{" "}
+                                                        {Math.round(
+                                                            obj.lat1 * 100
+                                                        ) / 100}{" "}
+                                                        | Max Lat
+                                                        {Math.round(
+                                                            obj.lat2 * 100
+                                                        ) / 100}
                                                     </p>
                                                 </div>
-                                                <div>Date</div>
-                                                <p className="text-xs">
-                                                    Timestamp {obj.timestamp}
-                                                </p>
+                                                <div>
+                                                    Date
+                                                    <p className="text-xs">
+                                                        Timestamp{" "}
+                                                        {post.timestamp}
+                                                    </p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div className="h-[30%] flex items-center justify-between px-5">
                                         <div className="bg-gray-500 h-[70%] w-[30%] rounded-md">
-                                            Extra 1
+                                            <img
+                                                src={
+                                                    "https://picsum.photos/200?random=" +
+                                                    Math.random() * 1000
+                                                }
+                                                className="max-h-[100px]"
+                                            />
                                         </div>
                                         <div className="bg-gray-500 h-[70%] w-[30%] rounded-md">
-                                            Extra 1
+                                            <img
+                                                src={
+                                                    "https://picsum.photos/200?random=" +
+                                                    Math.random() * 1000
+                                                }
+                                                className="max-h-[100px]"
+                                            />
                                         </div>
                                         <div className="bg-gray-500 h-[70%] w-[30%] rounded-md">
-                                            Extra 1
+                                            <img
+                                                src={
+                                                    "https://picsum.photos/200?random=" +
+                                                    Math.random() * 1000
+                                                }
+                                                className="max-h-[100px]"
+                                            />
                                         </div>
                                     </div>
                                 </div>
