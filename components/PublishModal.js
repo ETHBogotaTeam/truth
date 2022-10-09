@@ -13,7 +13,7 @@ const PublishModal = ({
     publishPost,
     setPublishIsOpen
 }) => {
-    const [screen, setScreen] = useState(2)
+    const [screen, setScreen] = useState(1)
     const [photoUri, setPhotoUri] = useState("")
 
     const onPhotoChange = (event) => {
@@ -90,7 +90,7 @@ const PublishModal = ({
                                             Select Your Location
                                         </Dialog.Title>
                                         <div>
-                                            <Map2 />
+                                            <Map2 photoUri={photoUri} />
                                         </div>
                                     </div>
                                 )
