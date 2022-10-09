@@ -113,8 +113,8 @@ export default function ZkIdentityComponent() {
 
 
   return (
-    <div className="flex flex-col items-center justify-center mt-10">
-      <button className="bg-green-300 p-3 rounded-md" onClick={handleSendTransaction}>Send Transaction</button>
-    </div>
+
+      <button className="w-full mt-5 items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2" onClick={handleSendTransaction}>Send Transaction</button>
+
   );
 }
