@@ -1,6 +1,4 @@
 import { ethers } from 'ethers';
-import Storage from '../utils/Storage.json';
-import GreeterArtifact from '../utils/Greeter.json';
 import {
   EntryPoint,
   EntryPoint__factory,
@@ -12,11 +10,9 @@ import { ZKWalletApi } from '../utils/ZKWalletApi';
 
 
 export default function ZkIdentityComponent() {
-  const GREETER_ADDR = '0xfB5BC404bE67793ce5E10e5564a680020E4c24A9';
   const ENTRYPOINT_ADDR = '0x2167fA17BA3c80Adee05D98F0B55b666Be6829d6';
   const FACTORY_ADDRESS = '0xb2775d7413Af578927Af15dd1303C994465Efbdd';
   const MY_WALLET_ADDRESS = '0x5f2F7f1Afb223c39CB14f5987257B2e4a1BaCc73';
-  const storageAddress = '0x27dF99bC70B7Ddb7c508fF518726A9D0E056EF00';
   //Create Random Private Key for the user
   const signer = ethers.Wallet.createRandom()
   const originalProvider = new ethers.providers.JsonRpcProvider(
@@ -25,7 +21,6 @@ export default function ZkIdentityComponent() {
   const originalSigner = signer.connect(originalProvider);
   const ownerAddress = originalSigner.getAddress();
 
-  const storageAbi = Storage;
   const walletDeployerAbi = MyWalletDeployer.abi;
 
   const getAAProvider = async () => {
@@ -96,21 +91,17 @@ export default function ZkIdentityComponent() {
 
     const aaSigner = aaProvider.getSigner();
 
-    console.log('aaSigner', aaSigner);
+    const trustAddress = "0x8d51d3de7E38c364CB85d342ABb7b39b19Fa50C7"
+    const trustAbi = [{"inputs":[],"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"owner","type":"address"},{"indexed":false,"internalType":"string","name":"dataUri","type":"string"}],"name":"MediaPost","type":"event"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"string","name":"dataUri","type":"string"}],"name":"postMedia","outputs":[],"stateMutability":"nonpayable","type":"function"}]
 
-    const storage = new ethers.Contract(storageAddress, storageAbi, aaSigner);
 
-    console.log('storage contract', storage);
-
-    try{    const greeter = new ethers.Contract(
-        GREETER_ADDR,
-        GreeterArtifact.abi,
+    try{ const trustContract = new ethers.Contract(
+        trustAddress,
+        trustAbi,
         aaSigner
       );
   
-      const tx = await greeter.addGreet({
-        value: ethers.utils.parseEther('0'),
-      });
+      const tx = await trustContract.postMedia("Hello World");
       console.log(tx);
       const receipt = await tx.wait();
       console.log(receipt);
@@ -123,7 +114,6 @@ export default function ZkIdentityComponent() {
 
   return (
     <div className="flex flex-col items-center justify-center mt-10">
-      <h1 className="mb-10">AA test</h1>
       <button className="bg-green-300 p-3 rounded-md" onClick={handleSendTransaction}>Send Transaction</button>
     </div>
   );
