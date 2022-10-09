@@ -5,7 +5,8 @@ const Publish = ({
     publishIsOpen,
     closePublishModal,
     handlePhotoChange,
-    publishPost
+    publishPost,
+    setPublishIsOpen
 }) => {
     const videoRef = useRef(null)
     const photoRef = useRef(null)
@@ -98,19 +99,7 @@ const Publish = ({
                                         </button>
                                     </Dialog.Title>
                                     <p>Publish a photo</p>
-                                    <div className="camera">
-                                        <video ref={videoRef}></video>
-                                        <button onClick={takePhoto}>
-                                            SNAP!
-                                        </button>
-                                    </div>
-                                    <div
-                                        className={
-                                            "map" + (hasPhoto ? "hasPhoto" : "")
-                                        }
-                                    >
-                                        <canvas ref={photoRef}></canvas>
-                                    </div>
+
                                     <button
                                         onClick={publishPost}
                                         className="flex border-2 p-4"

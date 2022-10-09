@@ -227,6 +227,17 @@ export default function Home() {
                                 <div>
                                     <p>{post.metadata.content}</p>
                                 </div>
+                                <div className="camera">
+                                    <video ref={videoRef}></video>
+                                    <button onClick={takePhoto}>SNAP!</button>
+                                </div>
+                                <div
+                                    className={
+                                        "map" + (hasPhoto ? "hasPhoto" : "")
+                                    }
+                                >
+                                    <canvas ref={photoRef}></canvas>
+                                </div>
                             </div>
                         </a>
                     </Link>
