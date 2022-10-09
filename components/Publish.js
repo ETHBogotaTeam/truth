@@ -54,6 +54,12 @@ const Publish = ({
         return dataURL
     }
 
+    const handlePhoto = () => {
+        alert("FILES:", fileInput.files)
+        const fileInput = document.querySelector('input[type="file"')
+        // console.log("FILES:", fileInput.files)
+    }
+
     useEffect(() => {
         getVideo()
     }, [publishIsOpen, videoRef])
@@ -91,7 +97,7 @@ const Publish = ({
                                         <button
                                             type="button"
                                             className="flex border-2 p-4"
-                                            onClick={closePublishModal}
+                                            onChange={closePublishModal}
                                         >
                                             Cancel
                                         </button>
@@ -123,6 +129,7 @@ const Publish = ({
                                         type="file"
                                         accept="image/*"
                                         capture="capture"
+                                        onClick={handlePhoto}
                                     ></input>
                                 </Dialog.Panel>
                             </Transition.Child>
