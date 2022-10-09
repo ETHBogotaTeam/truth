@@ -100,6 +100,8 @@ const Publish = ({
                                     <div>
                                         <video
                                             playsinline
+                                            autoplay
+                                            loop
                                             ref={videoRef}
                                         ></video>
                                         <button onClick={takePhoto}>
