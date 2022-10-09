@@ -1,7 +1,7 @@
 import { ethers } from "ethers"
 import Head from "next/head"
 import Image from "next/image"
-import Link from "next/Link"
+// import Link from "next/Link"
 import { useState, useEffect, useRef } from "react"
 import { Lens } from "../helpers/lens"
 import Publish from "../components/Publish"
@@ -197,7 +197,7 @@ export default function Home() {
                 </button>
                 <h1>Truth</h1>
                 {posts.map((post, index) => (
-                    <Link
+                    <a
                         href={`/profile/${
                             post.profile.id || post.profile.profileId
                         }`}
@@ -240,7 +240,7 @@ export default function Home() {
                                 </div>
                             </div>
                         </a>
-                    </Link>
+                    </a>
                 ))}
             </main>
 

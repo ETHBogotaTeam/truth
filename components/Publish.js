@@ -91,9 +91,7 @@ const Publish = ({
                                         <button
                                             type="button"
                                             className="flex border-2 p-4"
-                                            onClick={() =>
-                                                setPublishIsOpen(false)
-                                            }
+                                            onClick={closePublishModal}
                                         >
                                             Cancel
                                         </button>
