@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.4;
 
-contract Trust {
+contract Truth {
     address public owner;
 
     event MediaPost(address owner, string dataUri);

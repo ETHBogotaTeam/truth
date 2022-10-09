@@ -1,5 +1,9 @@
 {
-    "extends": ["prettier"]
+    "parser": "react-scripts/node_modules/babel-eslint",
+    "extends": [
+        "prettier", // Add "prettier" last. This will turn off eslint rules conflicting with prettier. This is not what will format our code.
+        "prettier/react"
+    ]
 }
 
 //  "plugin:@typescript-eslint/recommended",

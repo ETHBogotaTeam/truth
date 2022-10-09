@@ -7,12 +7,12 @@
 const hre = require("hardhat")
 
 async function main() {
-    const Trust = await hre.ethers.getContractFactory("Trust")
-    const trust = await Trust.deploy()
+    const Truth = await hre.ethers.getContractFactory("Truth")
+    const truth = await Truth.deploy()
 
-    await trust.deployed()
+    await truth.deployed()
 
-    console.log(`Trust deployed to ${trust.address}`)
+    console.log(`Truth deployed to ${truth.address}`)
 }
 
 // We recommend this pattern to be able to use async/await everywhere
