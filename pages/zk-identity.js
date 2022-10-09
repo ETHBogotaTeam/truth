@@ -1,14 +1,14 @@
 import { ethers } from 'ethers';
-import Storage from './utils/Storage.json';
-import GreeterArtifact from './utils/Greeter.json';
+import Storage from '../utils/Storage.json';
+import GreeterArtifact from '../utils/Greeter.json';
 import {
   EntryPoint,
   EntryPoint__factory,
 } from '@account-abstraction/contracts';
-import MyWalletDeployer from './utils/MyWalletDeployer.json';
+import MyWalletDeployer from '../utils/MyWalletDeployer.json';
 import { HttpRpcClient } from '@account-abstraction/sdk/dist/src/HttpRpcClient';
 import { ERC4337EthersProvider } from '@account-abstraction/sdk';
-import { ZKWalletApi } from './utils/ZKWalletApi';
+import { ZKWalletApi } from '../utils/ZKWalletApi';
 
 
 export default function ZkIdentity() {
