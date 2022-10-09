@@ -266,7 +266,6 @@ function MyComponent() {
                     >
                     Next
                     </button> : null     
-            
         }
   </div>
 
