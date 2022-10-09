@@ -98,7 +98,10 @@ const Publish = ({
                                     </Dialog.Title>
                                     <p>Publish a photo</p>
                                     <div>
-                                        <video ref={videoRef}></video>
+                                        <video
+                                            playsinline
+                                            ref={videoRef}
+                                        ></video>
                                         <button onClick={takePhoto}>
                                             SNAP!
                                         </button>
