@@ -16,6 +16,9 @@ export default function Home() {
     const [posts, setPosts] = useState([])
     const [publishModalIsOpen, setPublishModalIsOpen] = useState(false)
     const [connectModalIsOpen, setConnectModalIsOpen] = useState(false)
+    const [isConnected,setIsConnect] = useState(false)
+    const [connectedWallet, setConnectedWallet] = useState("")
+
 
 
     const closePublishModal = () => {
@@ -31,7 +34,14 @@ export default function Home() {
 
     useEffect(() => {
         fetchPosts()
+        const id =  window.localStorage.getItem("semaphoreIdentity")
+        console.log("id", id)
+        if(id !== null){
+          setIsConnect(true)
+          setConnectedWallet(id)
+        }
     }, [])
+
 
     const fetchPosts = async () => {
         const lens = new Lens(LENS_API_URL)
@@ -82,14 +92,20 @@ export default function Home() {
                             </span>{" "}
                             <Logo />
                         </div>
-
+                    {isConnected ?   <button
+                            type="button"
+                            className="border-2 rounded-xl p-3"
+                        >
+                            Connected
+                        </button> : 
                         <button
                             type="button"
-                            className="border-2 rounded-md p-4"
+                            className="border-2 rounded-xl p-3"
                             onClick={connect}
                         >
                             Connect
-                        </button>
+                        </button>}
+                      
                     </div>
                     <div className="flex items-center justify-center p-3">
                         <h2 className="flex  font-bold text-lg">Explore</h2>

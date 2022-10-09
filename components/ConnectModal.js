@@ -1,6 +1,11 @@
+import dynamic from "next/dynamic"
 import { Dialog } from "@headlessui/react"
-import { useState } from "react"
-import {QrReader} from "react-qr-reader"
+
+import { useState, useEffect } from "react"
+// import QrReader from "react-qr-reader"
+const QrReader = dynamic(() => import('react-qr-reader'), { ssr: false })
+
+import { Blob } from 'buffer'
 
 
 
@@ -10,6 +15,7 @@ const ConnectModal = ({
 }) => {
 
     const [isOpen,setIsOpen] = useState(false)
+    const [isConnected,setIsConnect] = useState(false)
 
     const handleConnectSemaphore = () => {
         console.log(isOpen)
@@ -24,6 +30,7 @@ const ConnectModal = ({
                 const scanDataCode = scanData.slice(-8)
                 console.log(`loaded >>>`, scanDataCode)
                 setData(scanDataCode)
+                window.localStorage.setItem("identity", scanDataCode)
             }
         } catch {
             console.log("error")
@@ -33,11 +40,18 @@ const ConnectModal = ({
         console.error(err)
     }
 
+    useEffect(() =>{
+       const id =  window.localStorage.getItem("identity")
+       if(id !== ""){
+         setIsConnect(true)
+       }
+    })
+
     return (
         <Dialog
             open={connectModalIsOpen}
             onClose={closeConnectModal}
-            className="relative z-50"
+            className="relative z-50 rounded-xl"
         >
             {/* The backdrop, rendered as a fixed sibling to the panel container */}
             <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
@@ -53,13 +67,13 @@ const ConnectModal = ({
                         </Dialog.Title>
                         <div className="flex items-center justify-center flex-col mb-5">
                             {isOpen ?  <QrReader
-                                    facingMode={"environment"}
-                                    delay={1000}
+                                    // facingMode={"environment"}
+                                    // delay={1000}
                                     onError={handleError}
                                     onScan={handleScan}
                                     style={{ width: "300px" }}
                                 /> :                         <div className="p-8">
-                         <button onClick={handleConnectSemaphore}>Semaphore Id</button>
+                         <button className="border-2 border-gray-700 rounded-md p-3" onClick={handleConnectSemaphore}>Semaphore Id</button>
                         </div> }
                               
                             </div>
