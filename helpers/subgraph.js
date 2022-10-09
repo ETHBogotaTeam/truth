@@ -4,7 +4,7 @@ import { createClient } from "urql"
 export const getMediaPosts = async () => {
     const query = `{
       mediaPosts(
-        where: {dataUri_contains: "http"}
+        where: {dataUri_contains: "http", timestamp_gt: "1665319968"}
         orderBy: timestamp
         orderDirection: desc
       ) {
