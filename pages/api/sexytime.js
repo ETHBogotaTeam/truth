@@ -6,7 +6,7 @@ export default async function (req, res) {
   console.log(slug)
   try {
     console.log(req);
-    const answer = await noirToIPFS();
+    const answer = await noirToIPFS("hi", "hi");
 
     res.json({ answer });
   } catch (e) {

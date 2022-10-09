@@ -16,7 +16,11 @@ import {
 
 import Geohash from 'latlon-geohash';
 import {publicIp, publicIpv4, publicIpv6} from 'public-ip';
+import { Web3Storage, getFilesFromPath } from 'web3.storage'
+import { NFTStorage, File, Blob } from 'nft.storage'
 import Noir from "noir-js-bogota/dest/noir";
+
+
 
 
 const App = () => {
@@ -26,34 +30,63 @@ const App = () => {
     description: "I'm fighting for my right, my right to parrrrrttyyyyyyy",
     datetime: "",
     city: "Bogota",
+    image: ""
   });
 
+  // async function party(params) {
+  //   const [geoHash, ghBounds] = await fetchUserLongLat();
+  //   const req = await fetch('url', {
+  //                     Method: 'POST',
+  //                     Headers: {
+  //                       Accept: 'application.json',
+  //                       'Content-Type': 'application/json'
+  //                     },
+  //                     Body: {geoHash: geoHash, ghBounds: ghBounds},
+  //                     Cache: 'default'
+  //                   })
+  // }
 
-async function prove(geoHash, userHash) {
-  const acirHex =
-  "cd92bd0dc230108595bf3d32822fb6937307120d2d1b24e1022e481159e9bd411c174c00126cc4365040913a2eb8eaaa277ddf7b3ebbdadba1ee4f3447f9ef8b73fbdc0eda9c2f6474eb273fbf366cdd41f4c9e0ac1482aa828043cd0ad5a064423625028244792c90734281956a54c514084ed049c5bb6f481c2023598dc2ec63a7076a8d1ec9def7fd4883999374a1ccf9f5c692d405e0cd02f00627cbdc9f34b998b90b30f300baa737";
-  const NoirJs = await Noir.new();
 
-  const res = await NoirJs.createProof(acirHex, geoHash.toString("hex"), userHash.toString("hex"), 32);
-  const verified = await NoirJs.verifyProof(res.verifier, res.proof);
-  console.log("proof verification", verified);
-  console.log(res);
+
+  async function prove(geoHash, userHash) {
+    const acirHex =
+    "cd92bd0dc230108595bf3d32822fb6937307120d2d1b24e1022e481159e9bd411c174c00126cc4365040913a2eb8eaaa277ddf7b3ebbdadba1ee4f3447f9ef8b73fbdc0eda9c2f6474eb273fbf366cdd41f4c9e0ac1482aa828043cd0ad5a064423625028244792c90734281956a54c514084ed049c5bb6f481c2023598dc2ec63a7076a8d1ec9def7fd4883999374a1ccf9f5c692d405e0cd02f00627cbdc9f34b998b90b30f300baa737";
+    const NoirJs = await Noir.new();
+
+    const res = await NoirJs.createProof(acirHex, [geoHash.toString("hex"), userHash.toString("hex")], 32);
+    const verified = await NoirJs.verifyProof(res.verifier, res.proof);
+    console.log("proof verification", verified);
+    console.log(res);
+
 }
 
-  async function fetchUserLongLat() {
-    const userIP = await publicIpv4();
-    console.log(userIP)
-    const res = await fetch(`https://get.geojs.io/v1/ip/geo/${userIP}.json`);
-    const obj = await res.json();
-    const longLat = {lat:parseFloat(obj.latitude),
-      lng: parseFloat(obj.longitude)};
-    const geohash = Geohash.encode(longLat.lat, longLat.lng, 4);
-    console.log(Geohash.bounds(geohash));
-    return geohash;
+
+
+  async function noirToIPFS() {
+    const privKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweGIzZjNjMWM0ZjMxOTNmODI4ODlEZTZBMmVjRjAxMmQwQ0VjRjQ4NUYiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2NTc5OTYxODUzNDUsIm5hbWUiOiJGUy1IQUNLIn0.zi3M741ubRNKN5n5YumSenNZmqR8ToHtQi4idlmKOHY";
+    const storage = new Web3Storage( {token:privKey} )
+    const [geoHash, ghBounds] = await fetchUserLongLat();
+    const proof = await prove(geoHash, geoHash);
+
+    const blob = new Blob([JSON.stringify({...formInput, proof: proof, imageFile: "test"})], { type: 'application/json' })
+    const finalFile = [new File([blob], 'hello.json')]
+
+    const cid = await storage.put(finalFile);
+    console.log('Content added with CID:', cid)
   }
 
-  getProof()
 
+  async function fetchUserLongLat() {
+      const userIP = await publicIpv4();
+      console.log(userIP)
+      const res = await fetch(`https://get.geojs.io/v1/ip/geo/${userIP}.json`);
+      const obj = await res.json();
+      const longLat = {lat:parseFloat(obj.latitude),
+        lng: parseFloat(obj.longitude)};
+      const geohash = Geohash.encode(longLat.lat, longLat.lng, 4);
+      console.log(Geohash.bounds(geohash));
+    return [geohash, Geohash.bounds(geohash)];
+  }
 
 
   // const navigate = useNavigate();
@@ -109,24 +142,13 @@ async function prove(geoHash, userHash) {
       <Heading as='h2' size='2xl'>
         Spread your Truth
       </Heading>
-      <FormLabel spacing={6}>Image name</FormLabel>
+      <FormLabel >Image name</FormLabel>
       <Input
         value={formInput.name}
         onChange={(event) =>
           setFormInput({ ...formInput, name: event.target.value })
         }
         id="name"
-      />
-      <FormLabel>Date and Time</FormLabel>
-      <Input
-        placeHolder="Select Date and Time"
-        size="md"
-        backgroundColor="#ffffff"
-        type="datetime-local"
-        id="datetime"
-        onChange={(event) =>
-          setFormInput({ ...formInput, datetime: event.target.value })
-        }
       />
       <FormLabel>Location</FormLabel>
       <Input
@@ -144,7 +166,7 @@ async function prove(geoHash, userHash) {
         id="description"
       />
 
-      <FormLabel>Event Image</FormLabel>
+      <FormLabel>Image</FormLabel>
       <Input type="file" name="Asset" onChange={onChange} />
       {fileUrl && <Image src={fileUrl} maxW="250px" />}
       <Image
@@ -163,11 +185,10 @@ async function prove(geoHash, userHash) {
           colorScheme='teal'
           size='md'
           onClick={async () => {
-            getProof();
-
+            noirToIPFS();
           }}
         >
-          Spread the Truth!
+          If you agree, to the above location range get your proof & image posted!
         </Button>
       </Box>
     </Container>
