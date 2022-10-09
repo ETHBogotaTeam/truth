@@ -43,6 +43,7 @@ export default function Map() {
     const [isVerified, setIsVerified] = useState(false)
 
     const [activeMarker, setActiveMarker] = useState(null)
+    const [locationSelected,setLocationSelected] = useState(false)
 
     const handleActiveMarker = (marker) => {
         if (marker === activeMarker) {
@@ -51,43 +52,6 @@ export default function Map() {
         setActiveMarker(marker)
     }
 
-    // function sendProps(){
-    //   Router.push({
-    //       pathname:"/select-nft",
-    //       query:{
-    //           minLat,
-    //           maxLat,
-    //           minLong,
-    //           maxLong,
-    //           currentLat,
-    //           currentLong
-    //       }
-
-    //   })
-    // }
-
-    const NFT_1 = [
-        //     {
-        //       id: 1,
-        //       timestamp: "20220719022435",
-        //       position: { lat: 48.84, lng:2.35 }
-        //     },
-        //     {
-        //       id: 2,
-        //       timestamp: "20220719022435",
-        //       position: { lat: 48.85, lng: 2.33 }
-        //     },
-        //     {
-        //       id: 3,
-        //       timestamp: "20220719022435",
-        //       position: { lat: 48.8427, lng: 2.345 }
-        //     },
-        //     {
-        //       id: 4,
-        //       timestamp: "20220719022435",
-        //       position: { lat: 48.8531, lng: 2.34 }
-        //     }
-    ]
 
     const { isLoaded } = useJsApiLoader({
         id: "google-map-script",
@@ -113,6 +77,7 @@ export default function Map() {
 
     async function generateProof(state, setState) {
         // Load files and run proof locally
+        getLocation();
         let DOMAIN = "http://localhost:3000"
         let VERCEL_DOMAIN = "https://daordinate-three.vercel.app/"
         let wasmBuff = await getFileBuffer(`${DOMAIN}/inRange.wasm`)
@@ -146,44 +111,39 @@ export default function Map() {
         }
     }
 
-    async function verifyProof(state, setState) {
-        let vkey = await fetch(
-            `localhost:3000/inRange_verification_key.json`
-        ).then((res) => res.json())
 
-        const verified = await snarkjs.plonk.verify(
-            vkey,
-            mainPublicSignals,
-            mainProof
-        )
-
-        setIsVerified(verified)
-    }
 
     const [location, setLocation] = useState({
         lat: "",
         long: ""
     })
 
-    function getLocation() {
-        const onSuccess = (loc) => {
-            setLocation({
-                lat: loc.coords.latitude,
-                long: loc.coords.longitude
-            })
+    function getLocation(){
+      const onSuccess = (loc) => {
+          setLocation({
+              lat: loc.coords.latitude,
+              long: loc.coords.longitude
+          })
+         
+    
 
-            const lat = loc.coords.latitude
-            const long = loc.coords.longitude
-            setCurrentLat(lat)
-            setCurrentLong(long)
-        }
+          const lat =loc.coords.latitude;
+          const long = loc.coords.longitude;
+          setCurrentLat(lat)
+          setCurrentLong(long)
+          console.log("Latitude")
+          console.log(lat)
+          console.log("Longitude")
+          console.log(long)
 
-        const onError = () => {
-            console.log("Could not get Location")
-        }
+      }
 
-        navigator.geolocation.getCurrentPosition(onSuccess, onError)
-    }
+      const onError =()=>{
+          console.log("Could not get Location")
+      }
+
+      navigator.geolocation.getCurrentPosition(onSuccess,onError)
+  }
 
     function getLatTarget() {
         const onSuccess = (loc) => {
@@ -224,38 +184,24 @@ export default function Map() {
                 <></>
             )}
             <div className="ml-2 mr-2 mb-4">
-                <button
+            {locationSelected ? <button
                     type="button"
                     className="w-full mt-5 items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                     onClick={getLocation}
                 >
-                    Get Location
-                </button>
-                <div className="mt-5 grid grid-cols-2 gap-1 sm:grid-cols-2">
-                    <button
+                    Select a location
+                </button> :                    
+                 <button
                         type="button"
                         className="ml-1 mr-1 w-full text-center px-4 py-2 border border-transparent font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                         onClick={generateProof}
                     >
                         Generate Proof
-                    </button>
-                    <button
-                        type="button"
-                        className="ml-1 mr-2 w-full text-center px-4 py-2 border border-transparent font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                        onClick={verifyProof}
-                    >
-                        Verify Proof
-                    </button>
-                </div>
-                {isVerified ? (
-                    <button
-                        type="button"
-                        className="w-full mt-5 text-center items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                        onClick={sendProps}
-                    >
-                        Next
-                    </button>
-                ) : null}
+                    </button> }
+                
+                {/* <div className="mt-5 grid grid-cols-2 gap-1 sm:grid-cols-2">
+
+                </div> */}
             </div>
         </div>
     )

@@ -1,6 +1,8 @@
 import { Dialog } from "@headlessui/react"
 import { useState, Fragment, useEffect, useRef } from "react"
 import Map from "./Map.js"
+import Map2 from "./Map2.js"
+
 const { Web3Storage, File } = require("web3.storage")
 const { Blob } = require("@web-std/blob")
 
@@ -11,7 +13,7 @@ const PublishModal = ({
     publishPost,
     setPublishIsOpen
 }) => {
-    const [screen, setScreen] = useState(1)
+    const [screen, setScreen] = useState(2)
     const [photoUri, setPhotoUri] = useState("")
 
     const onPhotoChange = (event) => {
@@ -88,7 +90,7 @@ const PublishModal = ({
                                             Select Your Location
                                         </Dialog.Title>
                                         <div>
-                                            <Map />
+                                            <Map2 />
                                         </div>
                                     </div>
                                 )
