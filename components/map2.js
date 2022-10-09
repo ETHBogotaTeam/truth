@@ -30,7 +30,7 @@ var center = {
     lng: -74.09
 }
 
-export default function Map2(photoUri) {
+export default function Map2({ photoUri }) {
     const [isConnected, setIsConnected] = useState()
 
     const [minLat, setMinLat] = useState(0)
