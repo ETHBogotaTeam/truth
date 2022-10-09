@@ -218,6 +218,7 @@ export default function Map2() {
     <div className="flex flex-col justify-evenly">
     {isLoaded ? (
         <div className="w-[400px]">
+            {mainProof ? <div>Hello World</div> :
             <GoogleMap
                 onLoad={onLoad}
                 onUnmount={onUnmount}
@@ -237,6 +238,8 @@ export default function Map2() {
                 center={center}
                 zoom={zoomPercentage}
             ></GoogleMap>
+            }
+
         </div>
     ) : (
         <></>
@@ -255,13 +258,24 @@ export default function Map2() {
             onClick={getLocation}
         >
             Next
-        </button> : <button
-            type="button"
-            className="w-full mt-5 items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2"
-            onClick={generateProof}
-        >
-            Generate Proof
-        </button> }
+        </button> :
+        <div>
+        {!mainProof ? <button
+                type="button"
+                className="w-full mt-5 items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2"
+                onClick={generateProof}
+            >
+                Generate Proof
+            </button> :
+            <button
+                type="button"
+                className="w-full mt-5 items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2"
+                onClick={generateProof}
+            >
+                Send Transaction
+            </button>}
+            
+        </div> }
         </div>                
       }
         
