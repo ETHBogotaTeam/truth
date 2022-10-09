@@ -15,6 +15,8 @@
   },
   "dependencies": {
     "@chakra-ui/react": "^2.3.5",
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
     "@headlessui/react": "^1.7.3",
     "@semaphore-protocol/group": "^2.5.0",
     "@semaphore-protocol/identity": "^2.5.0",
@@ -25,6 +27,7 @@
     "esm": "^3.2.25",
     "ethers": "^5.7.1",
     "firebase": "^9.11.0",
+    "framer-motion": "^7.5.3",
     "graphql": "^16.6.0",
     "latlon-geohash": "^2.0.0",
     "next": "^12.3.1",
@@ -32,9 +35,8 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-leaflet": "^4.1.0",
-    "urql": "^3.0.3"
+    "urql": "^3.0.3",
     "web3.storage": "^4.4.0"
-
   },
   "devDependencies": {
     "@noir-lang/aztec_backend": "^0.10.0",
