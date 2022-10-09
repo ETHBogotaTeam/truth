@@ -9,6 +9,7 @@ import PublishModal from "../components/PublishModal"
 import ConnectModal from "../components/ConnectModal"
 import { LENS_API_URL, LENS_HUB_ADDR } from "../config/mumbai"
 import Logo from "../components/Logo"
+import { getMediaPosts } from "../helpers/subgraph"
 
 export default function Home() {
     const LENS_HUB_ABI = require("../abi/lenshub.json")
@@ -16,10 +17,8 @@ export default function Home() {
     const [posts, setPosts] = useState([])
     const [publishModalIsOpen, setPublishModalIsOpen] = useState(false)
     const [connectModalIsOpen, setConnectModalIsOpen] = useState(false)
-    const [isConnected,setIsConnect] = useState(false)
+    const [isConnected, setIsConnect] = useState(false)
     const [connectedWallet, setConnectedWallet] = useState("")
-
-
 
     const closePublishModal = () => {
         setPublishModalIsOpen(false)
@@ -34,20 +33,17 @@ export default function Home() {
 
     useEffect(() => {
         fetchPosts()
-        const id =  window.localStorage.getItem("semaphoreIdentity")
+        const id = window.localStorage.getItem("semaphoreIdentity")
         console.log("id", id)
-        if(id !== null){
-          setIsConnect(true)
-          setConnectedWallet(id)
+        if (id !== null) {
+            setIsConnect(true)
+            setConnectedWallet(id)
         }
     }, [])
 
-
     const fetchPosts = async () => {
-        const lens = new Lens(LENS_API_URL)
-
         try {
-            const posts = await lens.getPosts()
+            const posts = await getMediaPosts()
             console.log("POST DATA: ", posts)
             setPosts(posts)
         } catch (err) {
@@ -92,20 +88,22 @@ export default function Home() {
                             </span>{" "}
                             <Logo />
                         </div>
-                    {isConnected ?   <button
-                            type="button"
-                            className="border-2 rounded-xl p-3"
-                        >
-                            Connected
-                        </button> : 
-                        <button
-                            type="button"
-                            className="border-2 rounded-xl p-3"
-                            onClick={connect}
-                        >
-                            Connect
-                        </button>}
-                      
+                        {isConnected ? (
+                            <button
+                                type="button"
+                                className="border-2 rounded-xl p-3"
+                            >
+                                Connected
+                            </button>
+                        ) : (
+                            <button
+                                type="button"
+                                className="border-2 rounded-xl p-3"
+                                onClick={connect}
+                            >
+                                Connect
+                            </button>
+                        )}
                     </div>
                     <div className="flex items-center justify-center p-3">
                         <h2 className="flex  font-bold text-lg">Explore</h2>
@@ -190,8 +188,8 @@ export default function Home() {
                     handleSubmitPublish={publishPost}
                 />
                 <ConnectModal
-                        connectModalIsOpen={connectModalIsOpen}
-                        closeConnectModal={closeConnectModal}
+                    connectModalIsOpen={connectModalIsOpen}
+                    closeConnectModal={closeConnectModal}
                 />
 
                 {/* 
