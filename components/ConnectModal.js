@@ -19,7 +19,7 @@ const ConnectModal = ({
 
     const handleConnectSemaphore = () => {
         console.log(isOpen)
-        setIsOpen(!isOpen)
+        setIsOpen(true)
     }
 
 
@@ -31,6 +31,9 @@ const ConnectModal = ({
                 console.log(`loaded >>>`, scanDataCode)
                 setData(scanDataCode)
                 window.localStorage.setItem("identity", scanDataCode)
+                setIsConnect(true)
+                setIsOpen(false)
+                closeConnectModal()
             }
         } catch {
             console.log("error")

@@ -1,11 +1,17 @@
 import { ethers } from "ethers"
+import { useState } from "react"
 import { EntryPoint, EntryPoint__factory } from "@account-abstraction/contracts"
 import MyWalletDeployer from "../utils/MyWalletDeployer.json"
 import { HttpRpcClient } from "@account-abstraction/sdk/dist/src/HttpRpcClient"
 import { ERC4337EthersProvider } from "@account-abstraction/sdk"
 import { ZKWalletApi } from "../utils/ZKWalletApi"
+import { useRouter } from "next/router"
+
 
 export default function ZkIdentityComponent({ finalUri }) {
+    const [isLoading,setIsLoading] = useState(false);
+    const router = useRouter()
+
     const ENTRYPOINT_ADDR = "0x2167fA17BA3c80Adee05D98F0B55b666Be6829d6"
     const FACTORY_ADDRESS = "0xb2775d7413Af578927Af15dd1303C994465Efbdd"
     const MY_WALLET_ADDRESS = "0x5f2F7f1Afb223c39CB14f5987257B2e4a1BaCc73"
@@ -83,6 +89,8 @@ export default function ZkIdentityComponent({ finalUri }) {
     }
 
     const handleSendTransaction = async () => {
+        setIsLoading(true)
+
         const aaProvider = await getAAProvider()
 
         const aaSigner = aaProvider.getSigner()
@@ -140,8 +148,14 @@ export default function ZkIdentityComponent({ finalUri }) {
             console.log(tx)
             const receipt = await tx.wait()
             console.log(receipt)
+
+            router.push(`/`)
+
+
+            
         } catch (e) {
             console.log(e)
+            // alert("Proof is Invalid")
         }
     }
 
@@ -150,7 +164,7 @@ export default function ZkIdentityComponent({ finalUri }) {
             className="w-full mt-5 items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2"
             onClick={handleSendTransaction}
         >
-            Send Transaction
+            {isLoading ? "Waiting Transaction": "Send Transaction"}
         </button>
     )
 }

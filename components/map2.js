@@ -212,8 +212,18 @@ export default function Map2({ photoUri }) {
             {isLoaded ? (
                 <div className="w-[400px]">
                     {mainProof ? (
-                        <div className="flex items-center justify-center mt-5 text-[17px] font-bold">
-                            Proofs Generated! Send your transaction!
+                        <div className="flex items-center flex-col justify-center mt-5 text-[17px] font-bold">
+                            <p className="text-[21px] mb-3">These are your photo's data</p>
+                            <p className="">Min Lat</p>
+                            <p className="text-[14px] text-gray-600">{minLat.toString().slice(0,5)}</p>
+                            <p className="">Max Lat</p>
+                            <p className="text-[14px] text-gray-600">{maxLat.toString().slice(0,5)}</p>
+                            <p className="">Min Long</p>
+                            <p className="text-[14px] text-gray-600">{minLong.toString().slice(0,5)}</p>
+                            <p className="">Max Long</p>
+                            <p className="text-[14px] text-gray-600">{maxLong.toString().slice(0,5)}</p>
+                            <p className="">Proof</p>
+                            <p className="text-[14px] text-gray-600">{JSON.stringify(mainProof).slice(0,25)}..</p>
                         </div>
                
                     ) : (
