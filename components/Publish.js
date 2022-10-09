@@ -5,7 +5,8 @@ const Publish = ({
     publishIsOpen,
     closePublishModal,
     handlePhotoChange,
-    publishPost
+    publishPost,
+    setPublishIsOpen
 }) => {
     const videoRef = useRef(null)
     const photoRef = useRef(null)
