@@ -10,6 +10,9 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.7.3",
+    "@semaphore-protocol/group": "^2.5.0",
+    "@semaphore-protocol/identity": "^2.5.0",
+    "@semaphore-protocol/proof": "^2.5.0",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.0.0",
     "dotenv": "^16.0.3",
