@@ -1,9 +1,10 @@
 import dynamic from "next/dynamic"
 import { Dialog } from "@headlessui/react"
-
+import { useRouter } from "next/router"
 import { useState, useEffect } from "react"
 // import QrReader from "react-qr-reader"
 const QrReader = dynamic(() => import('react-qr-reader'), { ssr: false })
+
 
 import { Blob } from 'buffer'
 
@@ -13,6 +14,7 @@ const ConnectModal = ({
     connectModalIsOpen,
     closeConnectModal,
 }) => {
+    const router = useRouter()
 
     const [isOpen,setIsOpen] = useState(false)
     const [isConnected,setIsConnect] = useState(false)
@@ -34,9 +36,14 @@ const ConnectModal = ({
                 setIsConnect(true)
                 setIsOpen(false)
                 closeConnectModal()
+
+                router.push(`/`)
+
             }
         } catch {
             console.log("error")
+            setIsOpen(false)
+
         }
     }
     const handleError = (err) => {
@@ -71,7 +78,7 @@ const ConnectModal = ({
                         <div className="flex items-center justify-center flex-col mb-5">
                             {isOpen ?  <QrReader
                                     // facingMode={"environment"}
-                                    // delay={1000}
+                                    delay={1000}
                                     onError={handleError}
                                     onScan={handleScan}
                                     style={{ width: "300px" }}
