@@ -3,6 +3,7 @@ import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
 import {useState, useEffect} from 'react'
 const snarkjs = require('snarkjs');
 import Router from 'next/router'
+import ZkIdentityComponent from './ZkIdentity'
 
 
 const statsLat = [
@@ -267,13 +268,7 @@ export default function Map2() {
             >
                 Generate Proof
             </button> :
-            <button
-                type="button"
-                className="w-full mt-5 items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2"
-                onClick={generateProof}
-            >
-                Send Transaction
-            </button>}
+            <ZkIdentityComponent/>}
             
         </div> }
         </div>                
