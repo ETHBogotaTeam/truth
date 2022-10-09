@@ -173,7 +173,7 @@ export default function Home() {
                 />
             </Head>
 
-            <main className="bg-[url('/bg.jpg')] p-0 m-0">
+            <main className="bg-[url('/bg.jpg')] bg-opacity-20 p-0 m-0 bg-cover bg-no-repeat bg-center bg-fixed">
                 <div className="flex">
                     <span className="text-gray-500 font-medium">Truth.</span>{" "}
                     <Logo />
