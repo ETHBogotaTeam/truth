@@ -108,10 +108,42 @@ export default function Home() {
                     <div className="flex items-center justify-center p-3">
                         <h2 className="flex  font-bold text-lg">Explore</h2>
                     </div>
+
                     <div className="flex flex-col items-center justify-center p-3 mb-3">
+                        {/* {posts.map((post) => (
+                            <div className="flex flex-col font-bold text-lg w-[400px] h-[480px] bg-gray-300 rounded-xl px-2">
+                                <div className="bg-gray-700 h-[70%] w-full relative">
+                                    <img
+                                        src="https://bafkreignlqv5eqoz4sqoiz4uexsrla3sxwovdfbq7uguis6vxjf7xzjjsm.ipfs.dweb.link"
+                                        className="z-20"
+                                    />
+                                    <div className="bg-white opacity-50 absolute bottom-0 w-full h-auto flex flex-col items-center justify-center py-2">
+                                        <div className="bg-gray-800 rounded-xl text-white px-2">
+                                            Verified by Truth
+                                        </div>
+                                        <div className="flex justify-between w-full px-3">
+                                            <div>Location</div>
+                                            <div>Date</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="h-[30%] flex items-center justify-between px-5">
+                                    <div className="bg-gray-500 h-[70%] w-[30%] rounded-md">
+                                        Extra 1
+                                    </div>
+                                    <div className="bg-gray-500 h-[70%] w-[30%] rounded-md">
+                                        Extra 1
+                                    </div>
+                                    <div className="bg-gray-500 h-[70%] w-[30%] rounded-md">
+                                        Extra 1
+                                    </div>
+                                </div>
+                            </div>
+                        ))} */}
+
                         <div className="flex flex-col font-bold text-lg w-[400px] h-[480px] bg-gray-300 rounded-xl px-2">
                             <div className="bg-gray-700 h-[70%] w-full relative">
-                                Image 1
+                                <img src="https://bafkreignlqv5eqoz4sqoiz4uexsrla3sxwovdfbq7uguis6vxjf7xzjjsm.ipfs.dweb.link" />
                                 <div className="bg-white opacity-50 absolute bottom-0 w-full h-auto flex flex-col items-center justify-center py-2">
                                     <div className="bg-gray-800 rounded-xl text-white px-2">
                                         Verified by Truth
@@ -124,20 +156,35 @@ export default function Home() {
                             </div>
                             <div className="h-[30%] flex items-center justify-between px-5">
                                 <div className="bg-gray-500 h-[70%] w-[30%] rounded-md">
-                                    Extra 1
+                                    <img src="https://bafybeihdok5swbi6rc3rf5bwg3y7zow5fnbgp3sdlkygz2qiic2p57htzu.ipfs.dweb.link" />
                                 </div>
-                                <div className="bg-gray-500 h-[70%] w-[30%] rounded-md">
-                                    Extra 1
-                                </div>
-                                <div className="bg-gray-500 h-[70%] w-[30%] rounded-md">
-                                    Extra 1
-                                </div>
+                                <div className="bg-gray-500 h-[70%] w-[30%] rounded-md"></div>
+                                <div className="bg-gray-500 h-[70%] w-[30%] rounded-md"></div>
                             </div>
                         </div>
 
                         <div className="flex flex-col font-bold text-lg w-[400px] h-[380px] bg-gray-300 rounded-xl px-2">
-                            <div className="bg-gray-700 h-[70%] w-full relative">
-                                Image 1
+                            <div className=" h-[70%] w-full relative">
+                                <img src="https://bafybeigjsy4xe7q32jvesrxd43yscmkaaqu33tl44nimhmbtj76lli5nxq.ipfs.dweb.link" />
+                                <div className="bg-white opacity-50 absolute bottom-0 w-full h-[50px] flex items-center justify-center">
+                                    <div className="bg-white rounded-xl">
+                                        Verified by Truth
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="h-[30%] flex items-center justify-between px-5">
+                                <div className="bg-gray-500 h-[70%] w-[30%] rounded-md"></div>
+                                <div className="bg-gray-500 h-[70%] w-[30%] rounded-md"></div>
+                                <div className="bg-gray-500 h-[70%] w-[30%] rounded-md"></div>
+                            </div>
+                        </div>
+
+                        <div className="flex flex-col font-bold text-lg w-[400px] h-[380px] bg-gray-300 rounded-xl px-2">
+                            <div className=" h-[70%] w-full relative">
+                                <img
+                                    src="https://bafybeihdok5swbi6rc3rf5bwg3y7zow5fnbgp3sdlkygz2qiic2p57htzu.ipfs.dweb.li"
+                                    className="z-20"
+                                />
                                 <div className="bg-white opacity-50 absolute bottom-0 w-full h-[50px] flex items-center justify-center">
                                     <div className="bg-white rounded-xl">
                                         Verified by Truth
@@ -146,36 +193,10 @@ export default function Home() {
                             </div>
                             <div className="h-[30%] flex items-center justify-between px-5">
                                 <div className="bg-gray-500 h-[70%] w-[30%] rounded-md">
-                                    Extra 1
+                                    <img src="https://bafybeihdok5swbi6rc3rf5bwg3y7zow5fnbgp3sdlkygz2qiic2p57htzu.ipfs.dweb.link" />
                                 </div>
-                                <div className="bg-gray-500 h-[70%] w-[30%] rounded-md">
-                                    Extra 1
-                                </div>
-                                <div className="bg-gray-500 h-[70%] w-[30%] rounded-md">
-                                    Extra 1
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="flex flex-col font-bold text-lg w-[400px] h-[380px] bg-gray-300 rounded-xl px-2">
-                            <div className="bg-gray-700 h-[70%] w-full relative">
-                                Image 1
-                                <div className="bg-white opacity-50 absolute bottom-0 w-full h-[50px] flex items-center justify-center">
-                                    <div className="bg-white rounded-xl">
-                                        Verified by Truth
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="h-[30%] flex items-center justify-between px-5">
-                                <div className="bg-gray-500 h-[70%] w-[30%] rounded-md">
-                                    Extra 1
-                                </div>
-                                <div className="bg-gray-500 h-[70%] w-[30%] rounded-md">
-                                    Extra 1
-                                </div>
-                                <div className="bg-gray-500 h-[70%] w-[30%] rounded-md">
-                                    Extra 1
-                                </div>
+                                <div className="bg-gray-500 h-[70%] w-[30%] rounded-md"></div>
+                                <div className="bg-gray-500 h-[70%] w-[30%] rounded-md"></div>
                             </div>
                         </div>
                     </div>

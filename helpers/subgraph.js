@@ -3,17 +3,17 @@ import { createClient } from "urql"
 
 export const getMediaPosts = async () => {
     const query = `{
-        mediaPosts(
-          where: {dataUri_starts_with_nocase: "http"}
-          orderBy: timestamp
-          orderDirection: desc
-        ) {
-          id
-          owner
-          timestamp
-          dataUri
-        }
-      }`
+      mediaPosts(
+        where: {dataUri_contains: "http"}
+        orderBy: timestamp
+        orderDirection: desc
+      ) {
+        id
+        owner
+        timestamp
+        dataUri
+      }
+    }`
 
     const client = createClient({
         url: SUBGRAPH
