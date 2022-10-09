@@ -55,7 +55,7 @@ const Publish = ({
 
     useEffect(() => {
         getVideo()
-    }, [videoRef])
+    }, [publishIsOpen, videoRef])
 
     return (
         <div>
@@ -96,7 +96,7 @@ const Publish = ({
                                         </button>
                                     </Dialog.Title>
                                     <p>Publish a photo</p>
-                                    <div className="camera">
+                                    <div>
                                         <video ref={videoRef}></video>
                                         <button onClick={takePhoto}>
                                             SNAP!
