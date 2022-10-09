@@ -11,7 +11,7 @@ class Lens {
         const query = `
             query Publications {
                 publications(request: {
-                  profileId: "0x01",
+                  profileId: "0x010356",
                   publicationTypes: [POST],
                   limit: 10
                 }) {
