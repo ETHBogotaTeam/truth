@@ -53,6 +53,7 @@ const PublishModal = ({
                                     capture="capture"
                                     onChange={onPhotoChange}
                                     className="border-2 p-4"
+                                    // style="visibility:hidden"
                                 ></input>
                             </div>
                             <div className="flex justify-end">

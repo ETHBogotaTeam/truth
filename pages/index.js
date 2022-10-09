@@ -6,6 +6,7 @@ import { useState, useEffect, useRef } from "react"
 import { Lens } from "../helpers/lens"
 import Publish from "../components/Publish"
 import PublishModal from "../components/PublishModal"
+import ConnectModal from "../components/ConnectModal"
 import { LENS_API_URL, LENS_HUB_ADDR } from "../config/mumbai"
 import Logo from "../components/Logo"
 
@@ -14,9 +15,14 @@ export default function Home() {
 
     const [posts, setPosts] = useState([])
     const [publishModalIsOpen, setPublishModalIsOpen] = useState(false)
+    const [connectModalIsOpen, setConnectModalIsOpen] = useState(false)
+
 
     const closePublishModal = () => {
         setPublishModalIsOpen(false)
+    }
+    const closeConnectModal = () => {
+        setConnectModalIsOpen(false)
     }
 
     const handlePhotoChange = () => {
@@ -40,9 +46,7 @@ export default function Home() {
     }
 
     async function connect() {
-        const accounts = await window.ethereum.request({
-            method: "eth_requestAccounts"
-        })
+        setConnectModalIsOpen(true)
     }
 
     const publishPost = async () => {}
@@ -168,6 +172,10 @@ export default function Home() {
                     closePublishModal={closePublishModal}
                     handlePhotoChange={handlePhotoChange}
                     handleSubmitPublish={publishPost}
+                />
+                <ConnectModal
+                        connectModalIsOpen={connectModalIsOpen}
+                        closeConnectModal={closeConnectModal}
                 />
 
                 {/* 

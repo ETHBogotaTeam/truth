@@ -55,46 +55,7 @@ function MyComponent() {
     setActiveMarker(marker);
   };
 
-  function sendProps(){
-    Router.push({
-        pathname:"/select-nft",
-        query:{
-            minLat,
-            maxLat,
-            minLong,
-            maxLong,
-            currentLat,
-            currentLong
-        }
 
-    })
-  }
-
-  const NFT_1 = [
-    
-//     {
-//       id: 1,
-//       timestamp: "20220719022435",
-//       position: { lat: 48.84, lng:2.35 }
-//     },
-//     {
-//       id: 2,
-//       timestamp: "20220719022435",
-//       position: { lat: 48.85, lng: 2.33 }
-//     },
-//     {
-//       id: 3,
-//       timestamp: "20220719022435",
-//       position: { lat: 48.8427, lng: 2.345 }
-//     },
-//     {
-//       id: 4,
-//       timestamp: "20220719022435",
-//       position: { lat: 48.8531, lng: 2.34 }
-//     }
-    
-  ];
-  
   
 
   const { isLoaded } = useJsApiLoader({
@@ -124,7 +85,6 @@ function MyComponent() {
 
       // Load files and run proof locally
       let DOMAIN = "http://localhost:3000";
-      let VERCEL_DOMAIN ="https://daordinate-three.vercel.app/";
       let wasmBuff = await getFileBuffer(`${DOMAIN}/inRange.wasm`);
       let zkeyBuff = await getFileBuffer(`${DOMAIN}/inRange.zkey`);
     
@@ -134,15 +94,12 @@ function MyComponent() {
           "currentLocation": [ parseInt(currentLat) + 1000, parseInt(currentLong) + 1000]
       }
       
-    
       try {
     
         let {proof, publicSignals} = await snarkjs.plonk.fullProve(input, wasmBuff, zkeyBuff);
         
         setMainProof(proof);
         setMainPublicSignals(publicSignals);
-
-        
       //   setState({...state, proof:proof, publicSignals:publicSignals})
     
       } catch (error) {
