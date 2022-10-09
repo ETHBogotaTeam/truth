@@ -97,11 +97,9 @@ const Publish = ({
                                         </button>
                                     </Dialog.Title>
                                     <p>Publish a photo</p>
-                                    <div>
+                                    {/* <div>
                                         <video
-                                            playsinline
-                                            autoplay
-                                            loop
+                                            poster
                                             ref={videoRef}
                                         ></video>
                                         <button onClick={takePhoto}>
@@ -120,7 +118,12 @@ const Publish = ({
                                         className="flex border-2 p-4"
                                     >
                                         Submit
-                                    </button>
+                                    </button> */}
+                                    <input
+                                        type="file"
+                                        accept="image/*"
+                                        capture="camera"
+                                    ></input>
                                 </Dialog.Panel>
                             </Transition.Child>
                         </div>
